@@ -3,8 +3,10 @@ language: generic
 services:
   - docker
 after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t varunaws22/user-wishlist .
-  - docker login -u "$DOCKER_ID" -password "DOCKER_PASSWORD"
+  - docker images
+  - docker tag user-wishlist varunaws22/user-wishlist
   - docker push varunaws22/user-wishlist
 deploy:
   provider: elasticbeanstalk
