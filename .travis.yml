@@ -5,7 +5,6 @@ services:
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t varunaws22/user-wishlist .
-  - docker images
   - docker push varunaws22/user-wishlist
 deploy:
   provider: elasticbeanstalk
